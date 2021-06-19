@@ -1,0 +1,140 @@
+import random
+ #Toss'
+result=True
+score=0
+score1=0
+target=0
+def batting_first(captain11,captain22):
+    score=0
+    score1=0
+    target=0
+    result=True
+    while result==True:
+            #print("Batsman's turn")
+            bat=int(input("Batsman's turn"))
+            if bat<0 or bat>4:
+                print("no run! only numbers between 0 and 4 are allowed")
+            else:
+                print(bat)
+                print("Bowlers's turn")
+                bow=random.randint(0,4)
+                print(bow)
+                if(bat==bow):
+                    result=False
+                    print("Thats Out! {} scored {} runs".format(captain11,score))
+                    target=score+1
+                    print("Target for {} is {}".format(captain22,target))
+                    break
+                else:
+                    score=score+bat
+    score1=target
+    result=True
+    score=0
+    target=0
+    print("Time for {} to bat" .format(captain22))
+    while result==True:
+        print("Batsman's turn")
+        bat=random.randint(0,4)
+        #print("Bowlers's turn")
+        bow=int(input("Bowler's turn"))
+        if bow<0 or bow>4:
+            print("Illegal delivery! only numbers between 0 and 4 are allowed")
+        else:
+            print("{} scored {} runs".format(captain22,bat))
+            if(bat==bow):
+                result=False
+                print("Thats Out! {} scored {} runs".format(captain22,score))
+                if score > score1:
+                    print("{} Finishes off in style!".format(captain11))
+                    break
+                else:
+                    print("{} bowled him out".format(captain22))
+                    break
+            else:
+                score+=bat
+                need=score1-score
+                if score > score1:
+                    print("{} Finishes in style".format(captain11))
+                    break
+                else:
+                    print("{} need {} runs to win".format(captain11,need))
+def bowling_first(captain11,captain22):
+    result=True
+    score=0
+    score1=0
+    target=0
+    while result==True:
+        print("Batsman's turn")
+        bat=random.randint(0,3)
+        #print("Bowlers's turn")
+        bow=int(input("Bowler's turn"))
+        if bow<0 or bow>4:
+            print("Illegal delivery! only numbers between 0 and 4 are allowed")
+        else:
+            print("{} scored {} runs".format(captain22,bat))
+            if(bat==bow):
+                result=False
+                print("Thats Out! {} scored {} runs".format(captain22,score))
+                target=score+1
+                print("Target for {} is {}".format(captain11,target))
+                break
+            else:
+                score=score+bat
+    score1=target
+    result=True
+    score=0
+    target=0
+    print("Time for {} to bat" .format(captain11))
+    while result==True:
+        #print("Batsman's turn")
+        bat=int(input("Batsman's turn"))
+        if bat<0 or bat>4:
+            print("no run! only numbers between 0 and 4 are allowed")
+        else:
+            print(bat)
+            print("Bowlers's turn")
+            bow=random.randint(0,3)
+            print(bow)
+            if(bat==bow):
+                result=False
+                print("Thats Out! {} scored {} runs".format(captain11,score))
+                if score > score1:
+                    print("{} Finishes off in style!".format(captain11))
+                    break
+                else:
+                    print("{} bowled him out!".format(captain22))
+                    break
+            else:
+                score+=bat
+                need=score1-score
+                if score > score1:
+                    print("{} Finishes off in style!".format(captain11))
+                    break
+                else:
+                    print("{} need {} runs to win".format(captain11,need))
+result=True
+score=0
+score1=0
+target=0
+captain1=input("First captain's name")
+captain2=input("Second captain's name")
+print("{} has the coin and {} to call it".format(captain2,captain1))
+toss=int(input("Toss time, Heads(0) or Tails(1)?"))
+toss1=random.randint(0,1)
+print(toss1)
+if toss==toss1:
+     choice1=int(input("Congrats " +captain1+ ", What would u like to do? Batting(0) or Bowling(1)?"))
+     if choice1==0:
+         print("News from the Centre " +captain1+ " has won the toss and decided to BAT first")
+         batting_first(captain1,captain2)
+     else:
+         print("News from the Centre " +captain1+ " has won the toss and decided to BOWL first")
+         bowling_first(captain1,captain2)
+else:
+    choice2=int(input("Congrats " +captain2+ ", What would u like to do? Batting(0) or Bowlinf(1)?"))
+    if choice2==0:
+         print("News from the Centre " +captain2+ " has won the toss and decided to BAT first")
+         batting_first(captain2,captain1)
+    else:
+        print("News from the Centre " +captain2+ " has won the toss and decided to BOWL first")
+        bowling_first(captain2,captain1)
